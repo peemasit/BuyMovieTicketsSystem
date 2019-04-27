@@ -29,29 +29,42 @@ namespace BuyMovieTicketsSystem {
                 Console.Write("Choose a movie number :");
                 string movieNumber = Console.ReadLine();
                 if (movieNumber == "1") {
-                    Console.Write("Choose showtimes number :");
-                    string movieShowtime = Console.ReadLine();
-                    if (movieShowtime == "1") {
-                        CheckSeat(seats1_15_00);
-                    } else if (movieShowtime == "2") {
-                        CheckSeat(seats1_18_40);
-                    } else if (movieShowtime == "3") {
-                        CheckSeat(seats1_22_20);
-                    } else {
-                        Console.Write("Please enter showtimes number :");
-                    }
+                    do {
+                        Console.Write("Choose showtimes number :");
+                        string movieShowtime = Console.ReadLine();
+                        if (movieShowtime == "1") {
+                            CheckSeat(seats1_15_00);
+                            inputCurrent = true;
+                        } else if (movieShowtime == "2") {
+                            CheckSeat(seats1_18_40);
+                            inputCurrent = true;
+                        } else if (movieShowtime == "3") {
+                            CheckSeat(seats1_22_20);
+                            inputCurrent = true;
+                        } else {
+                            Console.WriteLine("Please enter showtimes number");
+                            inputCurrent = false;
+                        }
+                    } while (!inputCurrent);
+                    
                 } else if (movieNumber == "2") {
-                    Console.Write("Choose showtimes number :");
-                    string movieShowtime = Console.ReadLine();
-                    if (movieShowtime == "1") {
-                        CheckSeat(seats2_17_00);
-                    } else if (movieShowtime == "2") {
-                        CheckSeat(seats2_19_20);
-                    } else if (movieShowtime == "3") {
-                        CheckSeat(seats2_21_40);
-                    } else {
-                        Console.Write("Please enter showtimes number :");
-                    }
+                    do {
+                        Console.Write("Choose showtimes number :");
+                        string movieShowtime = Console.ReadLine();
+                        if (movieShowtime == "1") {
+                            CheckSeat(seats2_17_00);
+                            inputCurrent = true;
+                        } else if (movieShowtime == "2") {
+                            CheckSeat(seats2_19_20);
+                            inputCurrent = true;
+                        } else if (movieShowtime == "3") {
+                            CheckSeat(seats2_21_40);
+                            inputCurrent = true;
+                        } else {
+                            Console.WriteLine("Please enter showtimes number");
+                            inputCurrent = false;
+                        }
+                    } while (!inputCurrent);
                 } else {
                     Console.WriteLine("Enter a movie number 1 or 2 :");
                 }
