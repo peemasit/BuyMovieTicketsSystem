@@ -1,0 +1,7 @@
+C:\Users\peema\source\repos\BuyMovieTicketsSystem\BuyMovieTicketsSystem\bin\Debug\BuyMovieTicketsSystem.exe.config
+C:\Users\peema\source\repos\BuyMovieTicketsSystem\BuyMovieTicketsSystem\bin\Debug\BuyMovieTicketsSystem.exe
+C:\Users\peema\source\repos\BuyMovieTicketsSystem\BuyMovieTicketsSystem\bin\Debug\BuyMovieTicketsSystem.pdb
+C:\Users\peema\source\repos\BuyMovieTicketsSystem\BuyMovieTicketsSystem\obj\Debug\BuyMovieTicketsSystem.csproj.CoreCompileInputs.cache
+C:\Users\peema\source\repos\BuyMovieTicketsSystem\BuyMovieTicketsSystem\obj\Debug\BuyMovieTicketsSystem.exe
+C:\Users\peema\source\repos\BuyMovieTicketsSystem\BuyMovieTicketsSystem\obj\Debug\BuyMovieTicketsSystem.pdb
+C:\Users\peema\source\repos\BuyMovieTicketsSystem\BuyMovieTicketsSystem\obj\Debug\BuyMovieTicketsSystem.csprojAssemblyReference.cache
