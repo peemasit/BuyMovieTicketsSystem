@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 namespace BuyMovieTicketsSystem {
     class Program {
 
+        static string[] movies = { "Avengers Endgame", "Doraemon The Movie" };
+        static string[,] showtimes = { { "15.00", "18.40", "22.20" },{ "17.00", "19.20", "21.40" } };
         static string[,] seats1_15_00 = { { "A1", "A2", "A3", "A4", "A5" }, { "B1", "B2", "B3", "B4", "B5" },
             { "C1", "C2", "C3", "C4", "C5" }, { "D1", "D2", "D3", "D4", "D5" }, { "E1", "E2", "E3", "E4", "E5" } };
         static string[,] seats1_18_40 = { { "A1", "A2", "A3", "A4", "A5" }, { "B1", "B2", "B3", "B4", "B5" },
@@ -19,30 +21,33 @@ namespace BuyMovieTicketsSystem {
             { "C1", "C2", "C3", "C4", "C5" }, { "D1", "D2", "D3", "D4", "D5" }, { "E1", "E2", "E3", "E4", "E5" } };
         static string[,] seats2_21_40 = { { "A1", "A2", "A3", "A4", "A5" }, { "B1", "B2", "B3", "B4", "B5" },
             { "C1", "C2", "C3", "C4", "C5" }, { "D1", "D2", "D3", "D4", "D5" }, { "E1", "E2", "E3", "E4", "E5" } };
-
+        
         static bool inputCurrent = true;
         static bool backCurrent = false;
         static bool confirmCurrent = false;
         static void Main(string[] args) {
-            Showtime();
             do {
+                Showtime(movies);
                 Console.Write("Choose a movie number :");
                 string movieNumber = Console.ReadLine();
                 if (movieNumber == "1") {
                     do {
-                        Console.Write("Choose showtimes number :");
+                        Console.Write("Choose showtimes enter showtimes number, enter 'back' to back to choose movie :");
                         string movieShowtime = Console.ReadLine();
                         if (movieShowtime == "1") {
-                            CheckSeat(seats1_15_00);
+                            CheckSeat(seats1_15_00, movies[0], showtimes[0,0]);
                             inputCurrent = true;
                         } else if (movieShowtime == "2") {
-                            CheckSeat(seats1_18_40);
+                            CheckSeat(seats1_18_40, movies[0], showtimes[0, 1]);
                             inputCurrent = true;
                         } else if (movieShowtime == "3") {
-                            CheckSeat(seats1_22_20);
+                            CheckSeat(seats1_22_20, movies[0], showtimes[0, 2]);
+                            inputCurrent = true;
+                        } else if (movieShowtime.ToUpper() == "BACK") {
+                            Console.Clear();
                             inputCurrent = true;
                         } else {
-                            Console.WriteLine("Please enter showtimes number");
+                            Console.WriteLine("Please enter showtimes number or back to movie menu");
                             inputCurrent = false;
                         }
                     } while (!inputCurrent);
@@ -52,13 +57,13 @@ namespace BuyMovieTicketsSystem {
                         Console.Write("Choose showtimes number :");
                         string movieShowtime = Console.ReadLine();
                         if (movieShowtime == "1") {
-                            CheckSeat(seats2_17_00);
+                            CheckSeat(seats2_17_00, movies[1], showtimes[1, 0]);
                             inputCurrent = true;
                         } else if (movieShowtime == "2") {
-                            CheckSeat(seats2_19_20);
+                            CheckSeat(seats2_19_20, movies[1], showtimes[1, 1]);
                             inputCurrent = true;
                         } else if (movieShowtime == "3") {
-                            CheckSeat(seats2_21_40);
+                            CheckSeat(seats2_21_40, movies[1], showtimes[1, 2]);
                             inputCurrent = true;
                         } else {
                             Console.WriteLine("Please enter showtimes number");
@@ -72,14 +77,14 @@ namespace BuyMovieTicketsSystem {
             
         }
 
-        static void Showtime() {
+        static void Showtime(string[] movies) {
             Console.WriteLine("-----Showtimes-----");
             Console.WriteLine();
-            Console.WriteLine("1.Avengers Endgame");
+            Console.WriteLine($"1.{movies[0]}");
             Console.WriteLine("  1      2      3  ");
             Console.WriteLine("15.00  18.40  22.20");
             Console.WriteLine();
-            Console.WriteLine("2.Doraemon The Movie");
+            Console.WriteLine($"2.{movies[1]}");
             Console.WriteLine("  1      2      3  ");
             Console.WriteLine("17.00  19.20  21.40");
             Console.WriteLine();
@@ -109,11 +114,11 @@ namespace BuyMovieTicketsSystem {
                 case 5: seats[i, 4] = "/"; break;
             }
         }
-        static void CheckSeat(string[,] table) {
+        static void CheckSeat(string[,] table, string movie, string showtime) {
             do {
                 ShowSeats(table);
                 do {
-                    Console.Write("Choose seat number: ");
+                    Console.Write("Choose seat number or back to showtimes enter (back) : ");
                     string input = (Console.ReadLine()).ToUpper();
                     string row = "";
                     int number = 0;
@@ -124,23 +129,22 @@ namespace BuyMovieTicketsSystem {
 
                     }
                     if ((row == "A") && (number <= 5 && number > 0) && input.Length == 2 && (table[0, number - 1] == $"A{number}")) {
-                        ConfirmSeat(input, table, 0, number);
+                        ConfirmSeat(input, table, 0, number, movie, showtime);
                     } else if ((row == "B") && (number <= 5 && number > 0) && (table[1, number - 1] == $"B{number}") && input.Length == 2) {
-                        ConfirmSeat(input, table, 1, number);
+                        ConfirmSeat(input, table, 1, number, movie, showtime);
                     } else if ((row == "C") && (number <= 5 && number > 0) && (table[2, number - 1] == $"C{number}") && input.Length == 2) {
-                        ConfirmSeat(input, table, 2, number);
+                        ConfirmSeat(input, table, 2, number, movie, showtime);
                     } else if ((row == "D") && (number <= 5 && number > 0) && (table[3, number - 1] == $"D{number}") && input.Length == 2) {
-                        ConfirmSeat(input, table, 3, number);
+                        ConfirmSeat(input, table, 3, number, movie, showtime);
                     } else if ((row == "E") && (number <= 5 && number > 0) && (table[4, number-1] == $"E{number}") && input.Length == 2) {
-                        ConfirmSeat(input, table, 4, number);
+                        ConfirmSeat(input, table, 4, number, movie, showtime);
                     } else if ((number <= 5 && number > 0) && ((table[0,number-1] == "/") || (table[1, number - 1] == "/") || (table[2, number - 1] == "/") || 
                         (table[3, number - 1] == "/")|| (table[4, number - 1] == "/")) && ((row == "A") || (row == "B") || (row == "C") || (row == "D") ||(row == "E"))) {
-                        Console.WriteLine("Seat is reserved, please choose another seat, if you want to back to showtimes enter (back)");
+                        Console.WriteLine("Seat is reserved, please choose another seat");
                         inputCurrent = false;
                         backCurrent = false;
                     } else if (input.ToLower() == "back") {
                         Console.Clear();
-                        Showtime();
                         inputCurrent = true;
                         backCurrent = true;
                     } else {
@@ -151,9 +155,15 @@ namespace BuyMovieTicketsSystem {
                 } while (!inputCurrent);
             } while (!backCurrent);
         }
-        static void ConfirmSeat(string input, string[,]table, int row, int number) {
+        static void ConfirmSeat(string seat, string[,]table, int row, int number, string movie, string showtime) {
             do {
-                Console.Write($"Confirm seat {input} (Y/N) : ");
+                Console.Clear();
+                ShowSeats(table);
+                Console.WriteLine();
+                Console.WriteLine($"Movie Title {movie}");
+                Console.WriteLine($"Showtime    {showtime}");
+                Console.WriteLine($"Seat No.    {seat}");
+                Console.Write($"Confirm ticket (Y/N) : ");
                 string confirm = Console.ReadLine();
                 if (confirm.ToUpper() == "Y") {
                     ChooseSeat(table, row, number);
